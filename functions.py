@@ -4,6 +4,7 @@ import os
 def get_all_data():
     data_path = os.path.join('q-fastapi.csv')
     output = """
+    {
         "students": [
     """
     with open(data_path, 'r') as file:
@@ -15,7 +16,7 @@ def get_all_data():
             
             output += f"""
             {{
-                "studentId": {id},
+                "studentId": {int(id)},
                 "class": {cls} 
             }},"""
     output = output[:-1] 
@@ -24,9 +25,11 @@ def get_all_data():
     }
     """
     return output
+
 def get_data_for_class(class_list):
     data_path = os.path.join('q-fastapi.csv')
     output = """
+    {
         "students": [
     """
     with open(data_path, 'r') as file:
@@ -38,7 +41,7 @@ def get_data_for_class(class_list):
             if cls in class_list:
                 output += f"""
                 {{
-                    "studentId": {id},
+                    "studentId": {int(id)},
                     "class": {cls} 
                 }},"""
     output = output[:-1] 
