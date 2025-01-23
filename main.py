@@ -8,9 +8,12 @@
 
 from fastapi import FastAPI
 import os
-import pandas as pd
+from functions import get_all_data, get_data_for_class
+
 
 app = FastAPI()
+
+
 
 @app.get("/")
 async def root():
@@ -18,9 +21,14 @@ async def root():
 
 @app.get("/api")
 async def return_all_data():
-    data_path = os.path.join('q-fastapi.csv')
+    output = get_all_data()
+    return output
+
+@app.get("/api/{class_names}")
+async def return_class_data(class_names):
     
-    return {"message": "Hello!"}
+    return output
+
 
 
 if __name__ == "__main__":
